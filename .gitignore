@@ -1,0 +1,3 @@
+vendor/*
+.phpcomplete_extended
+composer.lock
