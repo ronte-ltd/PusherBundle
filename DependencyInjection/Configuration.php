@@ -37,7 +37,7 @@ class Configuration implements ConfigurationInterface
                 ->integerNode('app_id')
                     ->isRequired()
                 ->end()
-            ->node();
+            ->end();
 
         $this->addOptionsSection($rootNode);
 

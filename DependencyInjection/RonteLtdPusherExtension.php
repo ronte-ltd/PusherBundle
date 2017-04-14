@@ -26,11 +26,11 @@ class RonteLtdPusherExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader(
+        $loader = new Loader\XmlFileLoader(
             $container,
             new FileLocator(__DIR__.'/../Resources/config')
         );
-        $loader->load('services.yml');
+        $loader->load('services.xml');
 
         $pusherDefinition = $container
             ->getDefinition('ronte_ltd_pusher.pusher');
