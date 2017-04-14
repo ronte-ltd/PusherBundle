@@ -9,29 +9,12 @@ See also [Slanger source](https://github.com/stevegraham/slanger) and [Slanger d
 
 ### Step 1: Download the Bundle
 
-Add private repository to your composer.json and `ronte-ltd/pusher-bundle` to your `composer.json`:
+Open a command console, enter your project directory and execute the
+following command to download the latest stable version of this bundle:
 
-``` js
-// composer.json
-
-{
-    // ...
-    "repositories": [
-        // ...
-        {
-            "type": "git",
-            "url": "git@git.scnetservices.ru:GSokol/PusherBundle.git"
-        }
-    ],
-    // ...
-    "require": {
-        // ...
-        "ronte-ltd/pusher-bundle": "^1.0.0"
-    }
-}
+```console
+$ composer require ronte-ltd/pusher-bundle "~1"
 ```
-
-Then do `composer install ...` or `composer update ...`.
 
 ### Step 2: Enable the Bundle
 
