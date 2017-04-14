@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Grogirii Sokoil <g.sokol99@g-sokol.info>
+ * @author Grogirii Sokolik <g.sokol99@g-sokol.info>
  */
 
 namespace RonteLtd\PusherBundle\DependencyInjection;
@@ -36,7 +36,6 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->integerNode('app_id')
                     ->isRequired()
-                    ->cannotBeEmpty()
                 ->end()
             ->node();
 
