@@ -9,7 +9,7 @@
   <services>
     <service
       id="ronte_ltd_pusher.pusher"
-      class="\Pusher"
+      class="Pusher"
     >
     </service>
   </services>
