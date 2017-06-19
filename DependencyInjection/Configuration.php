@@ -37,6 +37,8 @@ class Configuration implements ConfigurationInterface
                 ->integerNode('app_id')
                     ->isRequired()
                 ->end()
+                ->scalarNode('gearman_server')->end()
+                ->scalarNode('gearman_port')->end()
             ->end();
 
         $this->addOptionsSection($rootNode);
