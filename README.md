@@ -48,6 +48,8 @@ ronte_ltd_pusher:
     auth_key: # Your auth key. String
     secret:   # Your secret. String
     app_id:   # Your app id. Int
+    gearman_server: # Gearman server. String
+    gearman_port: # Gearman port. String
     # Additonally you may specify some custom options (optional):
     options:
         scheme:            # http / https
@@ -72,6 +74,12 @@ $pusher = $container->get('ronte_ltd_pusher.pusher');
 
 /* @var $data mixed */
 $pusher->trigger("some-channel", "some-event", $data);
+
+// or with multiple channels:
+$pusher->trigger(["some-channel1", "some-channel2"], "some-event", $data);
+
+// or on background:
+$pusher->addPush("some-channel1", "some-event", $data);
 ```
 
 For more information see [official client page](https://github.com/pusher/pusher-http-php/blob/master/README.md) and [doc page](https://pusher.com/docs/rest_api).

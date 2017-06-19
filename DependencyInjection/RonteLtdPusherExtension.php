@@ -33,7 +33,7 @@ class RonteLtdPusherExtension extends Extension
         $loader->load('services.xml');
 
         $pusherDefinition = $container
-            ->getDefinition('ronte_ltd_pusher.pusher');
+            ->getDefinition('ronte_ltd_pusher.pusher_server');
 
         $pusherDefinition
             ->addArgument($config['auth_key'])
