@@ -22,14 +22,23 @@ class Pusher
     protected $gearmanPort;
 
     /**
-     * PusherWrapper constructor.
-     * @param \Pusher $pusher
+     * @var string
      */
-    public function __construct(\Pusher $pusher, string $gearmanServer, string $gearmanPort)
+    protected $bgWorkerId;
+
+    /**
+     * Pusher constructor.
+     * @param \Pusher $pusher
+     * @param string $gearmanServer
+     * @param string $gearmanPort
+     * @param string $workerId
+     */
+    public function __construct(\Pusher $pusher, string $gearmanServer, string $gearmanPort, string $workerId)
     {
         $this->pusher = $pusher;
         $this->gearmanServer = $gearmanServer;
         $this->gearmanPort = $gearmanPort;
+        $this->bgWorkerId = $workerId;
     }
 
     /**
@@ -46,6 +55,14 @@ class Pusher
     public function getGearmanPort()
     {
         return $this->gearmanPort;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBgWorkerId()
+    {
+        return $this->bgWorkerId;
     }
 
     /**
@@ -71,9 +88,10 @@ class Pusher
     public function addPush($pusherChannels, string $pusherEvent, array $data): bool
     {
         $client = $this->createClient();
+        $prefix = str_replace(' ', '', $this->bgWorkerId);
 
         try {
-            $client->doBackground('sendPush', json_encode([
+            $client->doBackground($prefix . 'SendPush', json_encode([
                 'pusherChannels' => $pusherChannels,
                 'pusherEvent' => $pusherEvent,
                 'data' => $data,

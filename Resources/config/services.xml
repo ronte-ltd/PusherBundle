@@ -20,6 +20,7 @@
       <argument type="service" id="ronte_ltd_pusher.pusher_server" />
       <argument key="gearman_server">%gearman_server%</argument>
       <argument key="gearman_port">%gearman_port%</argument>
+      <argument key="bg_worker_id">%bg_worker_id%</argument>
     </service>
 
     <service
@@ -27,6 +28,7 @@
             class="RonteLtd\PusherBundle\Command\PusherQueueWorkerCommand"
     >
       <argument type="service" id="ronte_ltd_pusher.pusher" />
+      <argument key="bg_worker_id">%bg_worker_id%</argument>
       <tag name="console.command" />
     </service>
   </services>

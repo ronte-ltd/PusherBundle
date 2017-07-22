@@ -20,12 +20,19 @@ class PusherQueueWorkerCommand extends Command
     private $pusher;
 
     /**
-     * PushQueueWorkerCommand constructor.
-     * @param Pusher $pusher
+     * @var string
      */
-    public function __construct(Pusher $pusher)
+    private $bgWorkerId;
+
+    /**
+     * PusherQueueWorkerCommand constructor.
+     * @param Pusher $pusher
+     * @param string $bgWorkerId
+     */
+    public function __construct(Pusher $pusher, string $bgWorkerId)
     {
         $this->pusher = $pusher;
+        $this->bgWorkerId = $bgWorkerId;
 
         parent::__construct();
     }
@@ -37,13 +44,13 @@ class PusherQueueWorkerCommand extends Command
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $process = $input->getOption('process_id');
+        $prefix = $this->bgWorkerId;
         $worker = new \GearmanWorker();
         $worker->addServer(
             $this->pusher->getGearmanServer(),
             $this->pusher->getGearmanPort()
         );
-        $worker->addFunction($process . 'SendPush', [$this, 'sendPush']);
+        $worker->addFunction($prefix . 'SendPush', [$this, 'sendPush']);
 
         while (1) {
             $worker->work();
@@ -72,7 +79,6 @@ class PusherQueueWorkerCommand extends Command
         $this
             ->setName('pusher:worker:run')
             ->setDescription('Run pusher(web sockets) queue worker')
-            ->addOption('process_id', null, InputOption::VALUE_REQUIRED, 'Id of a process if there\'s multiple projects on a server using this command', 'pusher')
         ;
     }
 }

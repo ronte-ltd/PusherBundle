@@ -37,6 +37,7 @@ class Configuration implements ConfigurationInterface
                 ->integerNode('app_id')
                     ->isRequired()
                 ->end()
+                ->scalarNode('bg_worker_id')->end()
                 ->scalarNode('gearman_server')->end()
                 ->scalarNode('gearman_port')->end()
             ->end();

@@ -50,6 +50,7 @@ ronte_ltd_pusher:
     app_id:   # Your app id. Int
     gearman_server: # Gearman server. String
     gearman_port: # Gearman port. String
+    bg_worker_id: # This will be a prefix for a background function in case multiple projects on a server using this command.
     # Additonally you may specify some custom options (optional):
     options:
         scheme:            # http / https
